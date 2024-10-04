@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Liste des Pains</h1>
+    <ul>
+        {% for pain in pains %}
+            <li>{{ pain.id }} - {{ pain.name }}</li>
+        {% else %}
+            <p>Aucun pain trouvé.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}

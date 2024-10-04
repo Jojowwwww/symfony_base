@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Liste des Commentaires</h1>
+    <ul>
+        {% for commentaire in commentaires %}
+            <li>Commentaire ID : {{ commentaire.id }} - Burger ID : {{ commentaire.burger_id }} - Commentaire : {{ commentaire.name }}</li>
+        {% else %}
+            <p>Aucun commentaire trouvé.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}

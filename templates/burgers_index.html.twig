@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main class="container">
+        <h1 class="center-align">Liste des burgers</h1>
+        <p class="center-align">Nos burgers sont préparés avec soin et passion.</p>
+
+        <div class="row">
+            {% for burger in burgers %}
+            <div class="col s12 m6 l4">
+                <div class="card large">
+                    <div class="card-image">
+                        <img src="{{ burger.getImage() }}" alt="{{ burger.getId() }}">
+                    </div>
+                    <div class="card-content medium">
+                        <p class="center">{{ burger.name }}</p>
+                        <p><strong>Prix:</strong> {{ burger.price }}€</p>
+                        <p>{{ burger.description }}</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="{{ path('burger_show', { 'id': burger.id }) }}">Voir plus de détails</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}

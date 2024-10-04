@@ -1,7 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block content %}
-    <h2>{{ burger.name }}</h2>
-    <p>Vous regardez les détails du burger ID : {{ burger.id }}</p>
-    <p>{{ burger.description }}</p>
-{% endblock %}  
+{% block body %}
+    <main class="container">
+        <div class="row">
+            <div class="col s12 m8 offset-m2">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{ burger.getImage() }}" alt="Image du {{ burger.name }}">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="center-align">{{ burger.name }}</h2>
+                        <p>Numéro du burger : {{ burger.id }}</p>
+                        <p><strong>Prix:</strong> {{ burger.price }}€</p>
+                        <p>{{ burger.description }}</p>
+                    </div>
+                    <div class="card-action center-align">
+                        <a href="{{ path('burger_index') }}" class="btn">Retour à la liste des burgers</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3 class="center-align">Commentaires</h3>
+
+                        {% if commentaires is not empty %}
+                            <ul>
+                                {% for commentaire in commentaires %}
+                                    <li>
+                                        <strong>Commentaire n°{{ commentaire.id }}</strong> : {{ commentaire.name }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p class="center-align">Aucun commentaire pour ce burger pour le moment.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

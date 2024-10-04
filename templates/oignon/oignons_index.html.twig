@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Liste des Oignons</h1>
+    <ul>
+        {% for oignon in oignons %}
+            <li>{{ oignon.id }} - {{ oignon.name }}</li>
+        {% else %}
+            <p>Aucun oignon trouvé.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}
