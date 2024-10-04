@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block content %}
+{% block body %}
     <h1>Liste des Images</h1>
     <ul>
         {% for image in images %}
-            <li>{{ image.id }} - {{ image.name }}</li>
+            <li>{{ image.id }} - <img src="{{ image.name }}"></li>
         {% else %}
             <p>Aucune image trouvée.</p>
         {% endfor %}
