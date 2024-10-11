@@ -16,6 +16,26 @@ class BurgerRepository extends ServiceEntityRepository
         parent::__construct($registry, Burger::class);
     }
 
+    public function findBurgersWithIngredient(string $ingredient): array
+    {
+        return $this->createQueryBuilder('b')
+            ->join('b.oignons', 'o')
+            ->join('b.sauces', 's')
+            ->where('o.name LIKE :ingredient OR s.name LIKE :ingredient')
+            ->setParameter('ingredient', '%' . $ingredient . '%')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findTopXBurgers(int $limit)
+    {
+        return $this->createQueryBuilder('b')
+            ->orderBy('b.price', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Burger[] Returns an array of Burger objects
 //     */
